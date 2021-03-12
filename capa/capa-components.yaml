@@ -6,7 +6,7 @@ metadata:
   labels:
     cluster.x-k8s.io/provider: infrastructure-aws
   name: capa-manager-bootstrap-credentials
-  namespace: openshift-cluster-api
+  namespace: ocp-cluster-api
 type: Opaque
 ---
 apiVersion: apps/v1
@@ -16,7 +16,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-aws
     control-plane: capa-controller-manager
   name: capa-controller-manager
-  namespace: openshift-cluster-api
+  namespace: ocp-cluster-api
 spec:
   replicas: 1
   selector:
@@ -85,5 +85,5 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: openshift-cluster-api
+    namespace: ocp-cluster-api
 
