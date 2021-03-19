@@ -1,21 +1,24 @@
 # POC for running CAPI on OpenShift 
 
-This repo is intended to help with deploying CAPI components to OpenShift.
-
 ## Running on AWS
 
-There are couple prerequistes that need to be fullfilled in order to run CAPI on AWS.
-
-- Download the latest version of [clusterawsadm](https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases). This is a CLI tool for helping with deploying on AWS. You might want to place it in you path.
-- Set following env variables: 
+Set following environmental variables:
 
 ```
-export AWS_REGION=us-east-1 # This is used to help encode your environment variables
+export AWS_REGION=us-east-1
 export AWS_ACCESS_KEY_ID=<your-access-key>
 export AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
-export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm bootstrap credentials encode-as-profile)
+export OS=<your-system-type> # Could be linux or darwin
+export KUBECONFIG=<path-to-kubeconfig>
 ```
-- Edit `AWSMachineTemplate`(equivalent to ProviderSpec in MachineAPI) in `capa/capa-resources.yaml`. 
-Replace `iamInstanceProfile, ami, subnet, additionalSecurityGroups` with your values(this step is normally done by installer in MAPI).
 
-- Run `deploy-poc-aws.sh` script
+Edit `AWSMachineTemplate`(equivalent to ProviderSpec in MachineAPI) in `capa/capa-resources.yaml`. 
+Replace `iamInstanceProfile, ami, subnet, additionalSecurityGroups` with your values(this step is normally done by installer in MAPI). You can pick this values from providerSpec of MAPI worker machine(`oc get machine -n openshift-machine-api`).
+
+Run `deploy-poc-aws.sh` script.
+
+At this moment CSRs should be approved manually because `cluster-machine-approver` doesn't work with CAPI. In about 5 minutes after creating machine you should see a pending CSR and manually approve it:
+```
+kubectl get csr
+kubectl certificate approve <csr-name>
+```

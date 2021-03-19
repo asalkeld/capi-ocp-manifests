@@ -3,6 +3,20 @@
 GREEN='\033[0;32m'
 NOCOLOR='\033[0m'
 
+[ -z "$OS" ] && echo "OS not set"; exit 0;
+[ -z "$AWS_REGION" ] && echo "AWS_REGION not set"; exit 0;
+[ -z "$AWS_ACCESS_KEY_ID" ] && echo "AWS_ACCESS_KEY_ID not set"; exit 0;
+[ -z "$AWS_SECRET_ACCESS_KEY" ] && echo "AWS_SECRET_ACCESS_KEY not set"; exit 0;
+[ -z "$KUBECONFIG" ] && echo "KUBECONFIG not set"; exit 0;
+
+echo -e "${GREEN}Downloading CLIs${NOCOLOR}"
+
+curl -L https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases/download/v0.6.4/clusterawsadm-${OS}-amd64 -o clusterawsadm
+curl -L https://github.com/cloud-team-poc/cluster-patch/releases/download/v1/cluster-patch-${OS} -o cluster-patch
+
+chmod +x ./clusterawsadm
+chmod +x ./cluster-patch
+
 echo -e "${GREEN}Install CAPI CRDs${NOCOLOR}"
 
 oc apply -f capi/capi-crds.yaml
@@ -35,7 +49,7 @@ echo -e "${GREEN}Create CAPI resources: Cluster, AWSCluster, MachineSet, AWSMach
 
 oc apply -f capa/capa-resources.yaml
 
-echo -e "${GREEN}Patch CAPI cluster status to Ready${NOCOLOR}"
+echo -e "${GREEN}Patch CAPA cluster status to Ready${NOCOLOR}"
 
 ./cluster-patch
 
