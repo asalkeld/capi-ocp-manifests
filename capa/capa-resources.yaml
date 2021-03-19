@@ -58,7 +58,6 @@ spec:
       uncompressedUserData: true
       iamInstanceProfile: ...
       instanceType: m5.large
-      sshKeyName: ...
       cloudInit:
         secureSecretsBackend: secrets-manager
         insecureSkipSecretsManager: true
