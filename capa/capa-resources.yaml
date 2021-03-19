@@ -2,7 +2,7 @@ apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Cluster
 metadata:
   name: capi-ocp-aws
-  namespace: default
+  namespace: ocp-cluster-api
 spec:
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
@@ -14,7 +14,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: AWSCluster
 metadata:
   name: capi-ocp-aws
-  namespace: default
+  namespace: ocp-cluster-api
 spec:
   region: us-east-2
 
@@ -23,7 +23,7 @@ apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineSet
 metadata:
   name: capi-ocp-aws-md-0
-  namespace: default
+  namespace: ocp-cluster-api
 spec:
   clusterName: capi-ocp-aws
   replicas: 1
@@ -49,7 +49,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: AWSMachineTemplate
 metadata:
   name: capi-ocp-aws-md-0
-  namespace: default
+  namespace: ocp-cluster-api
 spec:
   template:
     spec:
