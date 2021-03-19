@@ -47,7 +47,7 @@ spec:
         env:
         - name: AWS_SHARED_CREDENTIALS_FILE
           value: /home/.aws/credentials
-        image: us.gcr.io/k8s-artifacts-prod/cluster-api-aws/cluster-api-aws-controller:v0.6.3
+        image: quay.io/ademicev/cluster-api-aws-controller-amd64:dev
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
