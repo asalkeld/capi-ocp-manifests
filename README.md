@@ -16,9 +16,3 @@ Edit `AWSMachineTemplate`(equivalent to ProviderSpec in MachineAPI) in `capa/cap
 Replace `iamInstanceProfile, ami, subnet, additionalSecurityGroups` with your values(this step is normally done by installer in MAPI). You can pick this values from providerSpec of MAPI worker machine(`oc get machine -n openshift-machine-api`).
 
 Run `deploy-poc-aws.sh` script.
-
-At this moment CSRs should be approved manually because `cluster-machine-approver` doesn't work with CAPI. In about 5 minutes after creating machine you should see a pending CSR and manually approve it:
-```
-kubectl get csr
-kubectl certificate approve <csr-name>
-```

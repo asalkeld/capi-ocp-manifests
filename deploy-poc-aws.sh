@@ -11,6 +11,16 @@ curl -L https://github.com/cloud-team-poc/cluster-patch/releases/download/v1/clu
 chmod +x ./clusterawsadm
 chmod +x ./cluster-patch
 
+echo -e "${GREEN}Downscale CVO${NOCOLOR}"
+
+oc scale deployment cluster-version-operator -nopenshift-cluster-version --replicas=0
+
+echo -e "${GREEN}Install patched cluster machine approver${NOCOLOR}"
+
+oc delete deployment machine-approver
+
+oc create -f cluster-machine-approver/deployment.yaml
+
 echo -e "${GREEN}Install CAPI CRDs${NOCOLOR}"
 
 oc apply -f capi/capi-crds.yaml
