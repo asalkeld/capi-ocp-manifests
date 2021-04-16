@@ -3,12 +3,6 @@
 GREEN='\033[0;32m'
 NOCOLOR='\033[0m'
 
-[ -z "$OS" ] && echo "OS not set"; exit 0;
-[ -z "$AWS_REGION" ] && echo "AWS_REGION not set"; exit 0;
-[ -z "$AWS_ACCESS_KEY_ID" ] && echo "AWS_ACCESS_KEY_ID not set"; exit 0;
-[ -z "$AWS_SECRET_ACCESS_KEY" ] && echo "AWS_SECRET_ACCESS_KEY not set"; exit 0;
-[ -z "$KUBECONFIG" ] && echo "KUBECONFIG not set"; exit 0;
-
 echo -e "${GREEN}Downloading CLIs${NOCOLOR}"
 
 curl -L https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases/download/v0.6.4/clusterawsadm-${OS}-amd64 -o clusterawsadm
