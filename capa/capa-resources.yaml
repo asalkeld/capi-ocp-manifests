@@ -56,14 +56,20 @@ spec:
   template:
     spec:
       uncompressedUserData: true
-      iamInstanceProfile: ...
+      iamInstanceProfile: ademicev1233333-8sc8c-worker-profile
       instanceType: m5.large
       cloudInit:
         secureSecretsBackend: secrets-manager
         insecureSkipSecretsManager: true
       ami:
-        id: ...
+        id: ami-04e591bf6aa86fd31
       subnet:
-        id: ...
+        filters:
+        - name: tag:Name
+          values:
+          - ademicev1233333-8sc8c-private-us-east-2a
       additionalSecurityGroups:
-        - id: ...
+      - filters:
+        - name: tag:Name
+          values:
+          - ademicev1233333-8sc8c-worker-sg
