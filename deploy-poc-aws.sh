@@ -3,41 +3,25 @@
 GREEN='\033[0;32m'
 NOCOLOR='\033[0m'
 
-echo -e "${GREEN}Downloading CLIs${NOCOLOR}"
-
-curl -L https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases/download/v0.6.4/clusterawsadm-${OS}-amd64 -o clusterawsadm
-curl -L https://github.com/cloud-team-poc/cluster-patch/releases/download/v1/cluster-patch-${OS} -o cluster-patch
-
-chmod +x ./clusterawsadm
-chmod +x ./cluster-patch
-
 echo -e "${GREEN}Downscale CVO${NOCOLOR}"
 
 oc scale deployment cluster-version-operator -nopenshift-cluster-version --replicas=0
 
 echo -e "${GREEN}Install patched cluster machine approver${NOCOLOR}"
 
-oc delete deployment machine-approver
+oc delete deployment -n openshift-cluster-machine-approver --all
 
 oc create -f cluster-machine-approver/deployment.yaml
 
-echo -e "${GREEN}Install CAPI CRDs${NOCOLOR}"
+echo -e "${GREEN}Install CAPI/CAPA CRDs${NOCOLOR}"
 
-oc apply -f capi/capi-crds.yaml
+oc create -f crds/
 
-echo -e "${GREEN}Create namespace and run CAPI controllers${NOCOLOR}"
+oc create -f https://raw.githubusercontent.com/cloud-team-poc/openshift-cluster-api-operator/master/config/crd/bases/capi.openshift.io_capideployments.yaml
 
-oc apply -f capi/capi-components.yaml
+echo -e "${GREEN}Create namespace and run operator${NOCOLOR}"
 
-echo -e "${GREEN}Install CAPA CRDs${NOCOLOR}"
-
-oc apply -f capa/capa-crds.yaml
-
-echo -e "${GREEN}Run CAPA controllers in CAPI namespace${NOCOLOR}"
-
-AWS_B64ENCODED_CREDENTIALS=$(./clusterawsadm bootstrap credentials encode-as-profile)
-
-envsubst < capa/capa-components.yaml | oc create -f -
+oc create -f operator/operator.yaml
 
 echo -e "${GREEN}Create worker user data for CAPI${NOCOLOR}"
 
@@ -47,13 +31,8 @@ unset USERDATA
 
 echo -e "${GREEN}Create kubeconfig for CAPI cluster${NOCOLOR}"
 
-oc create secret generic capi-ocp-aws-kubeconfig -n ocp-cluster-api --from-file=value=$KUBECONFIG
+oc create secret generic capi-poc-kubeconfig -n ocp-cluster-api --from-file=value=$KUBECONFIG
 
-echo -e "${GREEN}Create CAPI resources: Cluster, AWSCluster, MachineSet, AWSMachineTemplate${NOCOLOR}"
+echo -e "${GREEN}Create CAPI resources: CAPIDeployment, MachineSet, AWSMachineTemplate${NOCOLOR}"
 
-oc apply -f capa/capa-resources.yaml
-
-echo -e "${GREEN}Patch CAPA cluster status to Ready${NOCOLOR}"
-
-./cluster-patch
-
+oc apply -f examples/
