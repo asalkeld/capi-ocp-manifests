@@ -46,6 +46,11 @@ metadata:
 spec:
   clusterName: ${CLUSTER_NAME}
   replicas: ${WORKER_MACHINE_COUNT}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
   selector:
     matchLabels:
       cluster.x-k8s.io/cluster-name: ${CLUSTER_NAME}
