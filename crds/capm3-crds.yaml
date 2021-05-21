@@ -304,18 +304,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: ipaddresses.ipam.metal3.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-ipam-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: ipam.metal3.io
   names:
     categories:
@@ -473,18 +461,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: ipclaims.ipam.metal3.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-ipam-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: ipam.metal3.io
   names:
     categories:
@@ -631,18 +607,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: ippools.ipam.metal3.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-ipam-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: ipam.metal3.io
   names:
     categories:
@@ -801,18 +765,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3
   name: kubeadmconfigs.bootstrap.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capi-kubeadm-bootstrap-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: bootstrap.cluster.x-k8s.io
   names:
     categories:
@@ -2641,18 +2593,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3
   name: kubeadmconfigtemplates.bootstrap.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capi-kubeadm-bootstrap-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: bootstrap.cluster.x-k8s.io
   names:
     categories:
@@ -4502,18 +4442,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3
   name: kubeadmcontrolplanes.controlplane.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capi-kubeadm-control-plane-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: controlplane.cluster.x-k8s.io
   names:
     categories:
@@ -6256,18 +6184,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3clusters.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
@@ -6474,18 +6390,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3dataclaims.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
@@ -6628,18 +6532,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3datas.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
@@ -6821,18 +6713,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3datatemplates.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
@@ -7693,18 +7573,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3machines.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
@@ -8271,18 +8139,6 @@ metadata:
     cluster.x-k8s.io/v1alpha3: v1alpha3_v1alpha4
   name: metal3machinetemplates.infrastructure.cluster.x-k8s.io
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        caBundle: Cg==
-        service:
-          name: capm3-webhook-service
-          namespace: ocp-cluster-api
-          path: /convert
-      conversionReviewVersions:
-      - v1
-      - v1beta1
   group: infrastructure.cluster.x-k8s.io
   names:
     categories:
