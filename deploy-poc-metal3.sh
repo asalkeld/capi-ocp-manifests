@@ -2,14 +2,6 @@
 
 source deploy-poc-common.sh
 
-# TODO(Angus) replace with service-ca
-echo -e "${GREEN}Install Cert Manager (TEMP)${NOCOLOR}"
-oc apply -f operator/cert-manager.yaml
-echo -e "${GREEN}Waiting for Cert Manager to be available${NOCOLOR}"
-oc wait --for=condition=Available --timeout=300s -n cert-manager deployment cert-manager
-oc wait --for=condition=Available --timeout=300s -n cert-manager deployment cert-manager-cainjector
-oc wait --for=condition=Available --timeout=300s -n cert-manager deployment cert-manager-webhook
-
 echo -e "${GREEN}Install CAPM3 CRDs${NOCOLOR}"
 
 oc create -f crds/capm3-crds.yaml
