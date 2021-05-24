@@ -28,3 +28,12 @@ Set 'SCRIPTDIR' to your dev script dir, then run `deploy-poc-metal3.sh` script.
 export SCRIPTDIR=/opt/dev-scripts
 ./deploy-poc-metal3.sh
 ```
+
+Then run the metal3 branch for cluster-patch
+This sets the cluster.status = ready
+```
+git clone git@github.com:asalkeld/cluster-patch.git
+git checkout -b metal3 origin/metal3
+cd cluster-patch
+go run ./main.go -clusterName $CLUSTER_NAME -kubeconfig $KUBECONFIG
+```
